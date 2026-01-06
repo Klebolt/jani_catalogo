@@ -1,435 +1,789 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-        <meta property="og:title" content="Studio Jani Brandi - Nail Designer">
-        <meta property="og:description"
-            content="Agende seu horário! Manicure, Pedicure, Fibra e Gel com excelência.">
-        <meta property="og:image"
-            content="https://seusite.com/caminho-da-foto-capa.jpg"> <meta
-            property="og:url" content="https://seusite.com">
-        <meta property="og:type" content="website">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Studio Jani Brandi | Nail Designer</title>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Studio Jani Brandi | Nail Designer</title>
 
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Studio Jani Brandi - Especialista em Alongamento de Unhas, Fibra de Vidro e Banho de Gel.">
+    
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
-            rel="stylesheet">
-
-        <script src="https://unpkg.com/scrollreveal"></script>
-
-        <style>
-        /* =========================================
-           ÁREA DE CONFIGURAÇÃO RÁPIDA (CSS)
-           ========================================= */
+    <style>
+        /* ============================
+           CSS GLOBAL (MODO LIGHT / ROSA)
+           ============================ */
         :root {
-            --cor-fundo-principal: #fff0f5; 
-            --cor-primaria: #efaac4;        
-            --cor-secundaria: #dba4b8;      
-            --cor-dourado: #c5a059;         
-            --cor-texto: #4a4a4a;           
-            --cor-branco: #ffffff;
+            --bg: #fff0f5;          /* Fundo Rosa Claro */
+            --primary-text: #4a4a4a; /* Texto Cinza Escuro */
+            --accent: #c5a059;      /* Dourado */
+            --brand-pink: #efaac4;  /* Rosa da Marca */
             
-            --sombra-suave: 0 10px 30px rgba(0,0,0,0.08);
-            --borda-radius: 12px;
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-hover: #ffffff;
+            --border: rgba(239, 170, 196, 0.6);
+            
+            --font-main: 'Poppins', sans-serif;
+            --font-display: 'Orbitron', sans-serif;
+            --font-cursive: 'Great Vibes', cursive;
         }
 
-        /* Reset Básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-main); list-style: none; text-decoration: none; }
+
+        *:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background-color: var(--brand-pink); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--accent); }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--cor-fundo-principal);
-            color: var(--cor-texto);
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--primary-text);
+            overflow: hidden;
+            height: 100vh;
+            height: 100dvh;
         }
+
+        a, button, .project-card, .skill-box { cursor: pointer; }
 
         /* HEADER */
         header {
-            text-align: center;
-            background: linear-gradient(180deg, #fff 0%, var(--cor-fundo-principal) 100%);
-            padding-bottom: 2rem;
-        }
-
-        .hero-image-container {
-            width: 100%;
-            max-width: 600px; 
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            box-shadow: var(--sombra-suave);
-        }
-
-        .brand-area {
-            margin-top: -30px; 
-            position: relative;
-            z-index: 10;
-            padding: 0 20px;
-        }
-
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            color: var(--cor-dourado);
-            line-height: 1.2;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--cor-texto);
-            margin-top: 5px;
-            font-weight: 300;
-        }
-
-        /* CATÁLOGO DE SERVIÇOS */
-        .catalogo-section {
-            padding: 40px 0; /* Removido padding lateral no mobile para o carrossel ir até a borda */
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--cor-dourado);
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 2px solid var(--cor-primaria);
-            display: inline-block;
-            padding-bottom: 5px;
-            position: relative; 
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* ---------------------------------------------------------
-           AJUSTE SOLICITADO: CARROSSEL NO MOBILE
-           --------------------------------------------------------- */
-        .services-grid {
-            /* Configuração Mobile (Carrossel) */
-            display: flex;
-            overflow-x: auto; /* Permite rolagem lateral */
-            scroll-snap-type: x mandatory; /* Faz o card travar no centro */
-            gap: 20px;
-            padding: 10px 20px 30px 20px; /* Padding extra embaixo para sombra não cortar */
-            -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px; padding: 0 50px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            background: linear-gradient(to bottom, rgba(255, 240, 245, 0.95), transparent); /* Gradiente claro */
+            backdrop-filter: blur(2px);
         }
         
-        /* Esconde a barra de rolagem para ficar mais elegante */
-        .services-grid::-webkit-scrollbar {
-            display: none;
+        .logo { font-family: var(--font-cursive); font-size: 2rem; font-weight: 400; letter-spacing: 1px; color: var(--accent); text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+        
+        nav ul { display: flex; gap: 30px; }
+        nav li a { color: var(--primary-text); font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; position: relative; }
+        nav li a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--brand-pink); transition: 0.3s; }
+        nav li a:hover { color: var(--accent); }
+        nav li a:hover::after { width: 100%; }
+
+        /* SLIDER CONTAINER */
+        .slider { width: 100%; height: 100%; position: relative; overflow: hidden; }
+
+        .slider::before {
+            content: ''; position: absolute; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: -1; pointer-events: none;
         }
 
-        .service-card {
-            /* Configuração Mobile (Card do Carrossel) */
-            flex: 0 0 85%; /* O card ocupa 85% da largura da tela */
-            min-width: 280px;
-            scroll-snap-align: center; /* Centraliza o card ao parar de rolar */
-            
-            background: var(--cor-branco);
-            padding: 25px;
-            border-radius: var(--borda-radius);
-            box-shadow: var(--sombra-suave);
-            border: 1px solid rgba(239, 170, 196, 0.3);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .list { position: absolute; top: 0; left: 0; height: 100%; width: 100%; }
+        .item {
+            position: absolute; inset: 0; 
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.6s ease-in-out; 
+            pointer-events: none;
+        }
+        .item.active { opacity: 1; pointer-events: auto; z-index: 10; }
+
+        /* GRID PRINCIPAL */
+        .content-grid {
+            display: grid; 
+            grid-template-columns: 45% 55%; 
+            width: 90%; 
+            max-width: 1400px;
+            height: 80vh; 
+            align-items: center; 
+            gap: 40px;
         }
 
-        /* ---------------------------------------------------------
-           AJUSTE PARA DESKTOP E TABLET (VOLTA AO GRID)
-           --------------------------------------------------------- */
-        @media (min-width: 768px) {
-            .catalogo-section {
-                padding: 40px 20px;
-            }
+        /* TEXTOS */
+        .content { 
+            padding-left: 20px;
+            text-align: left;
+            transform: translateX(-50px); opacity: 0; transition: 0.8s; 
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .item.active .content { transform: translateX(0); opacity: 1; transition-delay: 0.3s; }
 
-            .services-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr); /* Tablet: 2 colunas */
-                overflow-x: visible; /* Desativa rolagem lateral */
-                padding-bottom: 0;
-            }
-
-            .service-card {
-                flex: none; /* Reseta o flex do mobile */
-                width: auto;
-            }
+        .tag {
+            font-family: var(--font-display); color: var(--brand-pink); letter-spacing: 3px;
+            text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; display: inline-block;
+            border-bottom: 2px solid var(--brand-pink); padding-bottom: 5px; align-self: flex-start;
+            font-weight: 700;
         }
 
-        @media (min-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr); /* PC: 3 colunas */
-            }
+        h1 { 
+            font-family: var(--font-display); font-size: 3.5rem; line-height: 1; margin-bottom: 25px; 
+            text-transform: uppercase; color: var(--accent); /* Dourado */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .title-cursive {
+            font-family: var(--font-cursive);
+            text-transform: none;
+            color: var(--primary-text);
+            font-size: 4.5rem;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .desc { 
+            color: #666; line-height: 1.6; max-width: 90%; font-size: 1rem; 
+            margin-top: 25px; 
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--cor-dourado);
+        .btn-group { display: flex; gap: 15px; margin-bottom: 10px; justify-content: flex-start; }
+
+        .btn-slider {
+            display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px;
+            border: 1px solid var(--brand-pink); border-radius: 50px; background: #fff;
+            color: var(--brand-pink); text-transform: uppercase; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px;
+            transition: 0.3s; cursor: pointer; text-decoration: none;
+            box-shadow: 0 4px 10px rgba(239, 170, 196, 0.2);
+        }
+        .btn-slider:hover { 
+            background: var(--brand-pink); color: #fff; border-color: var(--brand-pink); 
+            transform: translateY(-2px); box-shadow: 0 5px 15px rgba(239, 170, 196, 0.4);
         }
 
-        .service-info h3 {
-            color: var(--cor-texto);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+        /* VISUAL (LADO DIREITO) */
+        .visual {
+            height: 100%; width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            transform: translateX(50px); opacity: 0; transition: 0.8s;
         }
+        .item.active .visual { transform: translateX(0); opacity: 1; transition-delay: 0.4s; }
 
-        .service-desc {
-            font-size: 0.85rem;
-            color: #777;
-            margin-bottom: 15px;
-        }
-
-        .service-price {
-            font-size: 1.4rem;
-            color: var(--cor-dourado);
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .btn-agendar {
-            background-color: var(--cor-primaria);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 50px; 
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+        /* ============================
+           CARDS DE SERVIÇOS
+           ============================ */
+        .projects-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: background 0.3s;
+            height: auto; 
+            max-height: 75vh; 
+            overflow-y: auto; 
+            padding: 10px;
+            scrollbar-width: thin; 
+            scrollbar-color: var(--brand-pink) transparent; 
+            align-content: start; 
+        }
+        
+        .projects-wrapper::-webkit-scrollbar { width: 6px; }
+        .projects-wrapper::-webkit-scrollbar-track { background: transparent; }
+        .projects-wrapper::-webkit-scrollbar-thumb { background-color: var(--brand-pink); border-radius: 10px; }
+
+        .project-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px; 
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 320px; 
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15);
+            z-index: 2; 
+        }
+
+        .card-image-container {
+            width: 100%; height: 50%;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* ALTERADO: REMOVIDO GRAYSCALE */
+        .card-img {
+            width: 100%; height: 100%; background-color: #f0f0f0; object-fit: cover;
+            filter: none; /* Imagem colorida */
+            transition: transform 0.6s ease;
+        }
+        
+        .project-card:hover .card-img { transform: scale(1.08); }
+        
+        .card-info { 
+            padding: 15px; 
+            display: flex; flex-direction: column; 
+            justify-content: space-between; 
+            height: 50%; 
+        }
+
+        .card-header h3 { 
+            font-family: var(--font-main); font-weight: 600; font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-text); 
+            letter-spacing: 0.5px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+        }
+
+        .tech-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+        .tech-tag {
+            font-size: 0.65rem; color: #fff;
+            background: var(--brand-pink);
+            padding: 2px 10px; border-radius: 20px;
+            text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;
+        }
+
+        .card-info p { 
+            font-size: 0.8rem; color: #777; 
+            line-height: 1.4; margin-bottom: 10px; flex-grow: 1; 
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; 
+        }
+
+        .card-links { display: flex; gap: 8px; margin-top: auto; }
+        
+        .card-btn { 
+            flex: 1;
+            font-size: 0.75rem; text-align: center;
+            padding: 8px 0; border-radius: 6px; transition: 0.3s;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
             text-decoration: none;
         }
+        
+        .card-btn.primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+        .card-btn.primary:hover { background: #b08d4b; border-color: #b08d4b; }
 
-        .btn-agendar:hover {
-            background-color: var(--cor-secundaria);
-        }
+        .card-btn.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+        .card-btn.secondary:hover { background: var(--accent); color: #fff; }
 
-        /* LOCALIZAÇÃO (MAPA) */
-        .location-section {
-            padding: 0 20px 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center; 
-        }
 
-        .location-section .section-title {
-            left: auto;
-            transform: none;
+        /* ============================
+           MODAL
+           ============================ */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 240, 245, 0.85); /* Fundo modal claro */
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
+            transition: all 0.4s ease;
         }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
-        .map-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: var(--borda-radius);
-            overflow: hidden;
-            box-shadow: var(--sombra-suave);
-            border: 4px solid var(--cor-branco);
+        .modal-content {
+            background: #fff;
+            width: 90%; max-width: 800px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transform: translateY(50px);
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 50px rgba(197, 160, 89, 0.15);
+            max-height: 90vh; overflow-y: auto;
         }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
 
-        .address-text {
-            margin-top: 15px;
-            color: var(--cor-texto);
-            font-size: 1rem;
+        .modal-close {
+            position: absolute; top: 20px; right: 20px;
+            background: transparent; border: none; color: var(--primary-text);
+            font-size: 1.5rem; cursor: pointer; transition: 0.3s;
         }
+        .modal-close:hover { color: var(--brand-pink); transform: rotate(90deg); }
 
-        /* RODAPÉ / INSTAGRAM */
-        footer {
-            background-color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 40px;
-            border-top: 4px solid var(--cor-primaria);
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        
+        .modal-img { 
+            width: 100%; height: auto; max-height: 400px;
+            object-fit: cover; border-radius: 12px; border: 1px solid var(--border);
         }
+        
+        .modal-info h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 15px; color: var(--accent); }
+        .modal-tags { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .modal-desc { color: #666; line-height: 1.7; margin-bottom: 30px; font-size: 0.95rem; }
+        .modal-links { display: flex; gap: 15px; }
 
-        .social-link {
-            display: inline-block;
-            font-size: 2.5rem; 
-            color: #E1306C; 
-            margin-bottom: 10px;
-            transition: transform 0.3s;
-        }
 
-        .social-link:hover {
-            transform: scale(1.1);
+        /* SINGLE IMG (Geral) - ALTERADO: REMOVIDO GRAYSCALE */
+        .single-img {
+            max-width: 100%; max-height: 450px; object-fit: contain;
+            filter: none; /* Colorido */
+            transition: 0.5s; border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 4px solid #fff;
         }
+        .single-img:hover { transform: scale(1.02); border-color: var(--brand-pink); }
 
-        .footer-text {
-            font-size: 0.9rem;
-            color: #666;
+        .profile-slide .single-img { border: none; box-shadow: 0 20px 50px rgba(239, 170, 196, 0.4); background: transparent; border-radius: 40px; }
+
+        /* AMENITIES */
+        .skills-wrapper { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 12px; 
+            width: 100%; 
         }
+        
+        .skill-box {
+            background: #fff; 
+            padding: 15px 10px; 
+            border: 1px solid var(--border);
+            text-align: center; border-radius: 8px; transition: 0.3s; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 100px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+        
+        .skill-box:hover { border-color: var(--accent); background: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(197, 160, 89, 0.1); }
+        .skill-box i { font-size: 1.8rem; margin-bottom: 10px; color: var(--brand-pink); }
+        .skill-box span { font-size: 0.8rem; font-weight: 600; white-space: nowrap; color: var(--primary-text); }
+
+        /* MAPA */
+        .map-wrapper {
+            width: 100%; height: 100%;
+            border-radius: 12px; overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        /* ALTERADO: REMOVIDO FILTRO DO MAPA */
+        .map-wrapper iframe { width: 100%; height: 100%; border: 0; filter: none; }
+
+
+        /* NAVEGAÇÃO */
+        .arrows {
+            position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between;
+            padding: 0 20px; z-index: 100; pointer-events: none;
+        }
+        .arrows button {
+            width: 50px; height: 50px; border-radius: 50%; background: #fff;
+            border: 1px solid var(--border); color: var(--accent); cursor: pointer; pointer-events: auto;
+            transition: 0.3s; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .arrows button:hover { background: var(--brand-pink); color: #fff; transform: scale(1.1); border-color: var(--brand-pink); }
+
+        .indicators {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 100;
+        }
+        .number { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .dots { display: flex; gap: 8px; }
+        .dots li { width: 8px; height: 8px; background: rgba(0,0,0,0.1); border-radius: 50%; transition: 0.3s; cursor: pointer; }
+        .dots li.active { background: var(--accent); width: 25px; border-radius: 10px; }
 
         .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s;
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background-color: #25d366; color: #FFF; border-radius: 50%; text-align: center; font-size: 30px;
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: 0.3s; text-decoration: none;
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; color: #fff; box-shadow: 0 0 15px #25d366; }
 
-    </style>
-    </head>
-    <body>
+        /* ============================
+           RESPONSIVIDADE
+           ============================ */
+        @media (max-width: 1024px) {
+            .content-grid { grid-template-columns: 1fr; width: 85%; gap: 30px; height: auto; align-items: start; padding-top: 100px; }
+            .content { padding-left: 0; text-align: center; transform: translateY(20px); align-items: center; }
+            .content h1 { font-size: 2.5rem; }
+            .tag { align-self: center; } 
+            .btn-group { justify-content: center; } 
+            .visual { transform: translateY(20px); height: auto; margin-bottom: 100px; }
+            .single-img { max-height: 350px; }
+            .projects-wrapper { height: 500px; max-height: none; align-content: start; }
+            .map-wrapper { height: 300px; }
+        }
 
-        <header>
-            <div class="hero-image-container">
-                <img src="img/home.jpeg" alt="Foto Jani Brandi"
-                    class="hero-image">
-            </div>
-            <br><br>
-            <div class="brand-area">
-                <h1>Studio<br> Jani Brandi</h1>
-                <h2>Nail Designer</h2>
-            </div>
-        </header>
-
-        <main class="catalogo-section">
-            <h2 class="section-title">Catálogo de Serviços</h2>
-
-            <div class="services-grid">
-
-                <div class="service-card">
-                    <div class="service-info">
-                        <h3>Manicure Tradicional</h3>
-                        <p class="service-desc">Cutilagem funda e esmaltação
-                            perfeita.</p>
-                        <div class="service-price">R$ 40,00</div>
-                    </div>
-                    <button class="btn-agendar"
-                        onclick="agendar('Manicure Tradicional', '40,00')">
-                        <i class="fab fa-whatsapp"></i> Agendar
-                    </button>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-info">
-                        <h3>Alongamento em Fibra</h3>
-                        <p class="service-desc">Resistência e naturalidade para
-                            suas unhas.</p>
-                        <div class="service-price">R$ 150,00</div>
-                    </div>
-                    <button class="btn-agendar"
-                        onclick="agendar('Alongamento em Fibra', '150,00')">
-                        <i class="fab fa-whatsapp"></i> Agendar
-                    </button>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-info">
-                        <h3>Banho de Gel</h3>
-                        <p class="service-desc">Proteção para unhas naturais sem
-                            alongar.</p>
-                        <div class="service-price">R$ 80,00</div>
-                    </div>
-                    <button class="btn-agendar"
-                        onclick="agendar('Banho de Gel', '80,00')">
-                        <i class="fab fa-whatsapp"></i> Agendar
-                    </button>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-info">
-                        <h3>Spa dos Pés</h3>
-                        <p class="service-desc">Esfoliação, hidratação e
-                            massagem.</p>
-                        <div class="service-price">R$ 60,00</div>
-                    </div>
-                    <button class="btn-agendar"
-                        onclick="agendar('Spa dos Pés', '60,00')">
-                        <i class="fab fa-whatsapp"></i> Agendar
-                    </button>
-                </div>
-
-            </div>
-        </main>
-
-        <section class="location-section">
-            <h2 class="section-title">Onde Estamos</h2>
+        @media (max-width: 768px) {
+            header { padding: 0 20px; height: 60px; }
+            nav { display: none; }
+            .content-grid { padding-top: 80px; width: 90%; gap: 20px; }
             
-            <div class="map-container">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!4v1767734647074!6m8!1m7!1si9Varj8YAZx0KSQPKfdhXA!2m2!1d-23.66064420231181!2d-46.63710307156688!3f293.38!4f0!5f0.7820865974627469" 
-                    width="100%" 
-                    height="350" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            /* HOME (MOBILE) */
+            .profile-slide .content-grid { display: flex; flex-direction: column; }
+            .profile-slide .visual { order: 1; margin-bottom: 20px; height: auto; }
+            .profile-slide .content { order: 2; margin-bottom: 80px; text-align: center; align-items: center;}
+            .profile-slide .single-img { width: auto; height: 200px; max-width: 100%; object-fit: contain; }
+
+            .tag { font-size: 0.7rem; letter-spacing: 2px; align-self: center; }
+            h1 { font-size: 2.2rem; margin-bottom: 5px; }
+            .title-cursive { font-size: 3.5rem; }
+            .desc { font-size: 0.9rem; margin: 20px auto 0 auto; }
+            .btn-group { justify-content: center; flex-wrap: wrap;}
+            
+            /* PROJETOS/SERVIÇOS (MOBILE) */
+            .projects-wrapper { 
+                grid-template-columns: 1fr; 
+                grid-template-rows: auto; 
+                gap: 20px; height: 400px; max-height: none; align-content: start; padding-bottom: 40px;
+            }
+            .project-card { min-height: auto; flex-direction: row; height: 140px; }
+            .card-image-container { width: 35%; height: 100%; }
+            .card-info { width: 65%; padding: 12px; }
+            .card-header h3 { font-size: 0.9rem; }
+            .tech-tags { gap: 4px; margin-bottom: 5px; }
+            .tech-tag { font-size: 0.5rem; padding: 1px 5px;}
+            .card-info p { display: none; }
+            .card-links { margin-top: auto; }
+            .card-btn { font-size: 0.65rem; padding: 6px 0; }
+            
+            .single-img { max-height: 220px; margin: 0 auto; }
+            
+            /* SKILLS MOBILE */
+            .skills-wrapper { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            
+            .arrows { top: auto; bottom: 20px; padding: 0 20px; width: 100%; justify-content: space-between; }
+            .indicators { bottom: 30px; }
+            .number { font-size: 1.2rem; margin-bottom: 5px; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 85px; right: 20px; }
+            
+            .modal-content { padding: 20px; width: 95%; }
+            .modal-grid { grid-template-columns: 1fr; gap: 20px; }
+            .modal-img { height: 200px; }
+            .modal-info h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Studio Jani Brandi</div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="goToSlide(0)">Início</a></li>
+                <li><a href="#" onclick="goToSlide(1)">Serviços</a></li>
+                <li><a href="#" onclick="goToSlide(2)">Localização</a></li>
+                <li><a href="#" onclick="goToSlide(3)">Galeria</a></li>
+                <li><a href="#" onclick="goToSlide(4)">Diferenciais</a></li>
+            </ul>
+        </nav>
+        <div style="font-size: 1.2rem; cursor: pointer;">
+            <a href="https://instagram.com/SEU_INSTAGRAM" target="_blank" style="color:var(--accent)"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+
+    <div class="slider">
+        
+        <div class="item active profile-slide">
+            <div class="content-grid">
+                <div class="content">
+                    <span class="tag">NAIL DESIGNER</span>
+                    <h1>STUDIO<br><span class="title-cursive">Jani Brandi</span></h1>
+                    
+                    <div class="btn-group">
+                        <a href="#" onclick="openWhatsApp()" class="btn-slider"><i class="fab fa-whatsapp"></i> Agendar Agora</a>
+                        <a href="https://instagram.com/SEU_INSTAGRAM" target="_blank" class="btn-slider"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+
+                    <p class="desc">
+                        <strong>Elegância e sofisticação</strong> para suas unhas.
+                        <br>Especialista em alongamentos de alto padrão, proporcionando beleza, resistência e naturalidade.
+                    </p>
+                </div>
+                <div class="visual">
+                    <img class="single-img" src="img/home.jpeg" alt="Jani Brandi Nail Designer">
+                </div>
             </div>
+        </div>
 
-            <p class="address-text">
-                <i class="fas fa-map-marker-alt" style="color: var(--cor-dourado);"></i>
-                Av. Eng. Armando de Arruda Pereira, 4070 - Vila do Encontro
-            </p>
-        </section>
+        <div class="item">
+            <div class="content-grid">
+                <div class="content">
+                    <span class="tag">CATÁLOGO</span>
+                    <h1>NOSSOS<br>SERVIÇOS</h1>
+                    <p class="desc">
+                        Procedimentos realizados com produtos de alta qualidade e técnicas modernas.
+                        <br>Escolha o seu e agende.
+                    </p>
+                </div>
+                
+                <div class="visual">
+                    <div class="projects-wrapper" id="services-container">
+                        </div>
+                </div>
+            </div>
+        </div>
 
-        <footer>
-            <a href="https://www.instagram.com/janibrandi.studio/reels/" target="_blank"
-                class="social-link">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <p class="footer-text">Siga nosso Instagram para novidades!</p>
-            <br>
-            <p class="footer-text" style="font-size: 0.7rem;">© 2026 Kleber Pereira</p>
-        </footer>
+        <div class="item">
+            <div class="content-grid">
+                <div class="content">
+                    <span class="tag">LOCALIZAÇÃO</span>
+                    <h1>ONDE<br>ESTAMOS</h1>
+                    <p class="desc">
+                        <i class="fas fa-map-marker-alt" style="color:var(--brand-pink)"></i> 
+                        <strong>Av. Eng. Armando de Arruda Pereira, 4070</strong><br>
+                        Vila do Encontro - São Paulo/SP
+                    </p>
+                    <div class="btn-group">
+                        <button class="btn-slider" onclick="window.open('https://maps.google.com', '_blank')">Traçar Rota <i class="fas fa-location-arrow"></i></button>
+                    </div>
+                </div>
+                
+                <div class="visual">
+                    <div class="map-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!4v1767734647074!6m8!1m7!1si9Varj8YAZx0KSQPKfdhXA!2m2!1d-23.66064420231181!2d-46.63710307156688!3f293.38!4f0!5f0.7820865974627469" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <script>
-        const numeroWhatsApp = "5511960128667"; 
+        <div class="item">
+            <div class="content-grid">
+                <div class="content">
+                    <span class="tag">PORTFÓLIO</span>
+                    <h1>GALERIA<br>DE ARTE</h1>
+                    <div class="btn-group">
+                        <button class="btn-slider" onclick="window.open('https://instagram.com/SEU_INSTAGRAM', '_blank')">Ver Mais Fotos</button>
+                    </div>
+                    <p class="desc">Confira alguns dos resultados incríveis de nossas clientes.</p>
+                </div>
+                <div class="visual">
+                    <img class="single-img" src="img/home.jpeg" alt="Unhas Perfeitas" loading="lazy">
+                </div>
+            </div>
+        </div>
 
-        function agendar(servico, valor) {
-            const mensagem = `Olá, gostaria de agendar o serviço: *${servico}* (Valor: R$ ${valor}). Poderia me informar os horários disponíveis?`;
-            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+        <div class="item">
+            <div class="content-grid">
+                <div class="content">
+                    <span class="tag">POR QUE NÓS?</span>
+                    <h1>NOSSOS<br>DIFERENCIAIS</h1>
+                    <p class="desc">Mais que um serviço, uma experiência de autocuidado.</p>
+                    <div class="visual" style="transform: none; opacity: 1; width: 100%;">
+                        <div class="skills-wrapper">
+                            <div class="skill-box"><i class="fas fa-gem"></i><span>Qualidade</span></div>
+                            <div class="skill-box"><i class="fas fa-pump-soap"></i><span>Higiene</span></div>
+                            <div class="skill-box"><i class="fas fa-coffee"></i><span>Conforto</span></div>
+                            <div class="skill-box"><i class="fas fa-wifi"></i><span>Wi-Fi</span></div>
+                            <div class="skill-box"><i class="fas fa-clock"></i><span>Pontualidade</span></div>
+                            <div class="skill-box"><i class="fas fa-star"></i><span>Experiência</span></div>
+                            <div class="skill-box"><i class="fas fa-heart"></i><span>Cuidado</span></div>
+                            <div class="skill-box"><i class="fas fa-medal"></i><span>Certificada</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual" style="display:none;"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="arrows">
+        <button id="prev"><i class="fas fa-chevron-left"></i></button>
+        <button id="next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div class="indicators">
+        <div class="number">01</div>
+        <ul class="dots">
+            <li class="active" onclick="goToSlide(0)"></li>
+            <li onclick="goToSlide(1)"></li>
+            <li onclick="goToSlide(2)"></li>
+            <li onclick="goToSlide(3)"></li>
+            <li onclick="goToSlide(4)"></li>
+        </ul>
+    </div>
+
+    <a href="#" onclick="openWhatsApp()" class="whatsapp-float" title="Agendar no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-grid">
+                <div class="modal-left">
+                    <img id="m-img" src="" class="modal-img">
+                </div>
+                <div class="modal-info">
+                    <h2 id="m-title">Título do Serviço</h2>
+                    <div id="m-tags" class="modal-tags"></div>
+                    <p id="m-desc" class="modal-desc">Descrição completa...</p>
+                    <div class="modal-links">
+                        <a id="m-btn-agenda" href="#" target="_blank" class="btn-slider">Agendar Este Serviço</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURAÇÃO
+        const numeroWhatsApp = "5511960128667";
+
+        // DADOS DOS SERVIÇOS
+        const servicesData = [
+            {
+                title: "Manicure Tradicional",
+                img: "img/home.jpeg", 
+                tags: ["Cutilagem", "Esmaltação", "R$ 40,00"],
+                desc: "Serviço completo de cutilagem funda e esmaltação perfeita. Utilizamos materiais esterilizados e descartáveis para sua total segurança.",
+                price: "40,00"
+            },
+            {
+                title: "Alongamento em Fibra",
+                img: "img/home.jpeg",
+                tags: ["Resistência", "Naturalidade", "R$ 150,00"],
+                desc: "A técnica queridinha do momento. A fibra de vidro proporciona um alongamento com aparência extremamente natural, fina e resistente. Ideal para quem rói unhas ou deseja comprimento imediato.",
+                price: "150,00"
+            },
+            {
+                title: "Banho de Gel",
+                img: "img/home.jpeg",
+                tags: ["Proteção", "Brilho", "R$ 80,00"],
+                desc: "Uma camada de gel sobre suas unhas naturais (sem alongar). Evita quebras, lascas e mantém o esmalte por muito mais tempo com um brilho incrível.",
+                price: "80,00"
+            },
+            {
+                title: "Spa dos Pés",
+                img: "img/home.jpeg",
+                tags: ["Relaxamento", "Hidratação", "R$ 60,00"],
+                desc: "Um tratamento completo para seus pés. Inclui esfoliação profunda, hidratação intensa e massagem relaxante. Seus pés macios e renovados.",
+                price: "60,00"
+            }
+        ];
+
+        // FUNÇÃO PARA GERAR O WHATSAPP
+        function openWhatsApp(msg = "") {
+            const text = msg ? msg : "Olá, gostaria de agendar um horário.";
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
 
-        ScrollReveal().reveal('.service-card', { delay: 200, distance: '50px', origin: 'bottom', interval: 100 });
-        ScrollReveal().reveal('.hero-image', { delay: 100, scale: 0.9 });
-        ScrollReveal().reveal('.location-section', { delay: 200, distance: '50px', origin: 'bottom' });
-    </script>
+        // POPULAR O GRID DE SERVIÇOS
+        const servicesContainer = document.getElementById('services-container');
+        
+        servicesData.forEach((service, index) => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div class="card-image-container">
+                    <img src="${service.img}" class="card-img" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <div class="card-header">
+                        <div class="tech-tags">
+                            ${service.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+                        </div>
+                        <h3>${service.title}</h3>
+                    </div>
+                    <p>${service.desc}</p>
+                    <div class="card-links">
+                        <button class="card-btn primary" onclick="openModal(${index})">Ver Detalhes</button>
+                        <button class="card-btn secondary" onclick="openWhatsApp('Olá, quero agendar: ${service.title}')">Agendar</button>
+                    </div>
+                </div>
+            `;
+            servicesContainer.appendChild(card);
+        });
 
-    <a href="https://wa.me/5511960128667" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        </a>
-    </body>
+        // LÓGICA DO MODAL
+        const modal = document.getElementById('projectModal');
+        
+        function openModal(index) {
+            const service = servicesData[index];
+            document.getElementById('m-title').innerText = service.title;
+            document.getElementById('m-desc').innerText = service.desc;
+            document.getElementById('m-img').src = service.img;
+            
+            // Configurar botão do modal
+            const btnAgenda = document.getElementById('m-btn-agenda');
+            btnAgenda.onclick = () => openWhatsApp(`Olá, vi no site e gostaria de agendar o serviço: ${service.title} (R$ ${service.price})`);
+            
+            // Gerar tags
+            const tagContainer = document.getElementById('m-tags');
+            tagContainer.innerHTML = '';
+            service.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tech-tag';
+                span.innerText = tag;
+                tagContainer.appendChild(span);
+            });
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // --- LÓGICA DO SLIDER ---
+        let items = document.querySelectorAll('.slider .item');
+        let next = document.getElementById('next');
+        let prev = document.getElementById('prev');
+        let numberDisplay = document.querySelector('.number');
+        let dots = document.querySelectorAll('.dots li');
+        let sliderContainer = document.querySelector('.slider');
+        let projectsWrapper = document.querySelector('.projects-wrapper');
+
+        let active = 0;
+        let countItems = items.length;
+
+        function reloadSlider() {
+            let oldActive = document.querySelector('.slider .item.active');
+            oldActive.classList.remove('active');
+            let oldDot = document.querySelector('.dots li.active');
+            oldDot.classList.remove('active');
+
+            items[active].classList.add('active');
+            dots[active].classList.add('active');
+            numberDisplay.innerText = '0' + (active + 1);
+        }
+
+        next.onclick = function() {
+            active = active + 1;
+            if (active >= countItems) active = 0;
+            reloadSlider();
+        }
+
+        prev.onclick = function() {
+            active = active - 1;
+            if (active < 0) active = countItems - 1;
+            reloadSlider();
+        }
+
+        function goToSlide(index) {
+            active = index;
+            reloadSlider();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') next.click();
+            else if (event.key === 'ArrowLeft') prev.click();
+        });
+
+        // SWIPE TOUCH
+        let touchStartX = 0;
+        let touchEndX = 0;
+        sliderContainer.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+        sliderContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe(e);
+        });
+
+        function handleSwipe(e) {
+            if (e.target.closest('.projects-wrapper')) return; 
+            if (touchEndX < touchStartX - 50) next.click();
+            if (touchEndX > touchStartX + 50) prev.click();
+        }
+        
+        if(projectsWrapper) {
+            projectsWrapper.addEventListener('touchstart', (e) => e.stopPropagation());
+            projectsWrapper.addEventListener('touchmove', (e) => e.stopPropagation());
+            projectsWrapper.addEventListener('touchend', (e) => e.stopPropagation());
+        }
+    </script>
+</body>
 </html>
