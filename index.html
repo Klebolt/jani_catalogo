@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Jani Brandi | Nail Designer</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           ÁREA DE CONFIGURAÇÃO RÁPIDA (CSS)
+           Altere as cores aqui se desejar
+           ========================================= */
+        :root {
+            --cor-fundo-principal: #fff0f5; /* Rosa bem claro */
+            --cor-primaria: #efaac4;        /* Rosa do blazer (aproximado) */
+            --cor-secundaria: #dba4b8;      /* Rosa mais escuro para detalhes */
+            --cor-dourado: #c5a059;         /* Dourado do texto */
+            --cor-texto: #4a4a4a;           /* Cinza escuro para leitura */
+            --cor-branco: #ffffff;
+            
+            --sombra-suave: 0 10px 30px rgba(0,0,0,0.08);
+            --borda-radius: 12px;
+        }
+
+        /* Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cor-fundo-principal);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           HEADER / TOPO
+           ========================================= */
+        header {
+            text-align: center;
+            background: linear-gradient(180deg, #fff 0%, var(--cor-fundo-principal) 100%);
+            padding-bottom: 2rem;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 600px; /* Limita a largura da foto em telas grandes */
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Estilo da Imagem Principal */
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .brand-area {
+            margin-top: -30px; /* Sobrepõe levemente a imagem */
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--cor-dourado);
+            line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--cor-texto);
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+        /* =========================================
+           CATÁLOGO DE SERVIÇOS
+           ========================================= */
+        .catalogo-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--cor-dourado);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--cor-primaria);
+            display: inline-block;
+            padding-bottom: 5px;
+            /* Centralizar o título */
+            position: relative; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Grid Responsivo dos Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile: 1 coluna */
+            gap: 20px;
+        }
+
+        /* Tablet e Desktop */
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr); /* Tablet: 2 colunas */
+            }
+        }
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr); /* PC: 3 colunas */
+            }
+        }
+
+        /* Card do Serviço */
+        .service-card {
+            background: var(--cor-branco);
+            padding: 25px;
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra-suave);
+            border: 1px solid rgba(239, 170, 196, 0.3);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cor-dourado);
+        }
+
+        .service-info h3 {
+            color: var(--cor-texto);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            font-size: 1.4rem;
+            color: var(--cor-dourado);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Botão Agendar */
+        .btn-agendar {
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50px; /* Botão arredondado */
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-agendar:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+        /* =========================================
+           RODAPÉ / INSTAGRAM
+           ========================================= */
+        footer {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 4px solid var(--cor-primaria);
+        }
+
+        .social-link {
+            display: inline-block;
+            font-size: 2.5rem; /* Ícone grande */
+            color: #E1306C; /* Cor oficial do Instagram */
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="hero-image-container">
+            <img src="img/home.jpeg" alt="Foto Jani Brandi" class="hero-image">
+        </div>
+        <br><br>
+        <div class="brand-area">
+            <h1>Studio Jani Brandi</h1>
+            <h2>Nail Designer</h2>
+        </div>
+    </header>
+
+    <main class="catalogo-section">
+        <h2 class="section-title">Catálogo de Serviços</h2>
+
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div class="service-info">
+                    <h3>Manicure Tradicional</h3>
+                    <p class="service-desc">Cutilagem funda e esmaltação perfeita.</p>
+                    <div class="service-price">R$ 40,00</div>
+                </div>
+                <button class="btn-agendar" onclick="agendar('Manicure Tradicional', '40,00')">
+                    <i class="fab fa-whatsapp"></i> Agendar
+                </button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-info">
+                    <h3>Alongamento em Fibra</h3>
+                    <p class="service-desc">Resistência e naturalidade para suas unhas.</p>
+                    <div class="service-price">R$ 150,00</div>
+                </div>
+                <button class="btn-agendar" onclick="agendar('Alongamento em Fibra', '150,00')">
+                    <i class="fab fa-whatsapp"></i> Agendar
+                </button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-info">
+                    <h3>Banho de Gel</h3>
+                    <p class="service-desc">Proteção para unhas naturais sem alongar.</p>
+                    <div class="service-price">R$ 80,00</div>
+                </div>
+                <button class="btn-agendar" onclick="agendar('Banho de Gel', '80,00')">
+                    <i class="fab fa-whatsapp"></i> Agendar
+                </button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-info">
+                    <h3>Spa dos Pés</h3>
+                    <p class="service-desc">Esfoliação, hidratação e massagem.</p>
+                    <div class="service-price">R$ 60,00</div>
+                </div>
+                <button class="btn-agendar" onclick="agendar('Spa dos Pés', '60,00')">
+                    <i class="fab fa-whatsapp"></i> Agendar
+                </button>
+            </div>
+
+            </div>
+    </main>
+
+    <footer>
+        <a href="https://instagram.com/SEU_INSTAGRAM_AQUI" target="_blank" class="social-link">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <p class="footer-text">Siga nosso Instagram para novidades!</p>
+        <br>
+        <p class="footer-text" style="font-size: 0.7rem;">&copy; 2024 Studio Jani Brandi</p>
+    </footer>
+
+    <script>
+        // =========================================
+        // CONFIGURAÇÃO DO WHATSAPP
+        // =========================================
+        
+        // 1. Coloque o número do salão aqui (com código do país e DDD, apenas números)
+        const numeroWhatsApp = "5511999999999"; 
+
+        function agendar(servico, valor) {
+            // Cria a mensagem personalizada
+            const mensagem = `Olá, gostaria de agendar o serviço: *${servico}* (Valor: R$ ${valor}). Poderia me informar os horários disponíveis?`;
+            
+            // Codifica a mensagem para URL
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+            
+            // Abre o WhatsApp em nova aba
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
