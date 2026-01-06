@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Jani Brandi | Nail Designer</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <head>
+        <meta property="og:title" content="Studio Jani Brandi - Nail Designer">
+        <meta property="og:description"
+            content="Agende seu horário! Manicure, Pedicure, Fibra e Gel com excelência.">
+        <meta property="og:image"
+            content="https://seusite.com/caminho-da-foto-capa.jpg"> <meta
+            property="og:url" content="https://seusite.com">
+        <meta property="og:type" content="website">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Studio Jani Brandi | Nail Designer</title>
 
-    <style>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+            rel="stylesheet">
+
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <style>
         /* =========================================
            ÁREA DE CONFIGURAÇÃO RÁPIDA (CSS)
-           Altere as cores aqui se desejar
            ========================================= */
         :root {
-            --cor-fundo-principal: #fff0f5; /* Rosa bem claro */
-            --cor-primaria: #efaac4;        /* Rosa do blazer (aproximado) */
-            --cor-secundaria: #dba4b8;      /* Rosa mais escuro para detalhes */
-            --cor-dourado: #c5a059;         /* Dourado do texto */
-            --cor-texto: #4a4a4a;           /* Cinza escuro para leitura */
+            --cor-fundo-principal: #fff0f5; 
+            --cor-primaria: #efaac4;        
+            --cor-secundaria: #dba4b8;      
+            --cor-dourado: #c5a059;         
+            --cor-texto: #4a4a4a;           
             --cor-branco: #ffffff;
             
             --sombra-suave: 0 10px 30px rgba(0,0,0,0.08);
@@ -42,9 +53,7 @@
             line-height: 1.6;
         }
 
-        /* =========================================
-           HEADER / TOPO
-           ========================================= */
+        /* HEADER */
         header {
             text-align: center;
             background: linear-gradient(180deg, #fff 0%, var(--cor-fundo-principal) 100%);
@@ -53,12 +62,11 @@
 
         .hero-image-container {
             width: 100%;
-            max-width: 600px; /* Limita a largura da foto em telas grandes */
+            max-width: 600px; 
             margin: 0 auto;
             position: relative;
         }
 
-        /* Estilo da Imagem Principal */
         .hero-image {
             width: 100%;
             height: auto;
@@ -69,7 +77,7 @@
         }
 
         .brand-area {
-            margin-top: -30px; /* Sobrepõe levemente a imagem */
+            margin-top: -30px; 
             position: relative;
             z-index: 10;
             padding: 0 20px;
@@ -92,11 +100,9 @@
             font-weight: 300;
         }
 
-        /* =========================================
-           CATÁLOGO DE SERVIÇOS
-           ========================================= */
+        /* CATÁLOGO DE SERVIÇOS */
         .catalogo-section {
-            padding: 40px 20px;
+            padding: 40px 0; /* Removido padding lateral no mobile para o carrossel ir até a borda */
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -111,33 +117,35 @@
             border-bottom: 2px solid var(--cor-primaria);
             display: inline-block;
             padding-bottom: 5px;
-            /* Centralizar o título */
             position: relative; 
             left: 50%;
             transform: translateX(-50%);
         }
 
-        /* Grid Responsivo dos Cards */
+        /* ---------------------------------------------------------
+           AJUSTE SOLICITADO: CARROSSEL NO MOBILE
+           --------------------------------------------------------- */
         .services-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Mobile: 1 coluna */
+            /* Configuração Mobile (Carrossel) */
+            display: flex;
+            overflow-x: auto; /* Permite rolagem lateral */
+            scroll-snap-type: x mandatory; /* Faz o card travar no centro */
             gap: 20px;
+            padding: 10px 20px 30px 20px; /* Padding extra embaixo para sombra não cortar */
+            -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+        }
+        
+        /* Esconde a barra de rolagem para ficar mais elegante */
+        .services-grid::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Tablet e Desktop */
-        @media (min-width: 768px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr); /* Tablet: 2 colunas */
-            }
-        }
-        @media (min-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr); /* PC: 3 colunas */
-            }
-        }
-
-        /* Card do Serviço */
         .service-card {
+            /* Configuração Mobile (Card do Carrossel) */
+            flex: 0 0 85%; /* O card ocupa 85% da largura da tela */
+            min-width: 280px;
+            scroll-snap-align: center; /* Centraliza o card ao parar de rolar */
+            
             background: var(--cor-branco);
             padding: 25px;
             border-radius: var(--borda-radius);
@@ -147,6 +155,33 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        /* ---------------------------------------------------------
+           AJUSTE PARA DESKTOP E TABLET (VOLTA AO GRID)
+           --------------------------------------------------------- */
+        @media (min-width: 768px) {
+            .catalogo-section {
+                padding: 40px 20px;
+            }
+
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* Tablet: 2 colunas */
+                overflow-x: visible; /* Desativa rolagem lateral */
+                padding-bottom: 0;
+            }
+
+            .service-card {
+                flex: none; /* Reseta o flex do mobile */
+                width: auto;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr); /* PC: 3 colunas */
+            }
         }
 
         .service-card:hover {
@@ -173,13 +208,12 @@
             margin-bottom: 20px;
         }
 
-        /* Botão Agendar */
         .btn-agendar {
             background-color: var(--cor-primaria);
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 50px; /* Botão arredondado */
+            border-radius: 50px; 
             cursor: pointer;
             font-weight: 600;
             text-transform: uppercase;
@@ -197,9 +231,36 @@
             background-color: var(--cor-secundaria);
         }
 
-        /* =========================================
-           RODAPÉ / INSTAGRAM
-           ========================================= */
+        /* LOCALIZAÇÃO (MAPA) */
+        .location-section {
+            padding: 0 20px 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center; 
+        }
+
+        .location-section .section-title {
+            left: auto;
+            transform: none;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: var(--borda-radius);
+            overflow: hidden;
+            box-shadow: var(--sombra-suave);
+            border: 4px solid var(--cor-branco);
+        }
+
+        .address-text {
+            margin-top: 15px;
+            color: var(--cor-texto);
+            font-size: 1rem;
+        }
+
+        /* RODAPÉ / INSTAGRAM */
         footer {
             background-color: #fff;
             padding: 40px 20px;
@@ -210,8 +271,8 @@
 
         .social-link {
             display: inline-block;
-            font-size: 2.5rem; /* Ícone grande */
-            color: #E1306C; /* Cor oficial do Instagram */
+            font-size: 2.5rem; 
+            color: #E1306C; 
             margin-bottom: 10px;
             transition: transform 0.3s;
         }
@@ -225,101 +286,150 @@
             color: #666;
         }
 
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
     </style>
-</head>
-<body>
+    </head>
+    <body>
 
-    <header>
-        <div class="hero-image-container">
-            <img src="img/home.jpeg" alt="Foto Jani Brandi" class="hero-image">
-        </div>
-        <br><br>
-        <div class="brand-area">
-            <h1>Studio Jani Brandi</h1>
-            <h2>Nail Designer</h2>
-        </div>
-    </header>
+        <header>
+            <div class="hero-image-container">
+                <img src="img/home.jpeg" alt="Foto Jani Brandi"
+                    class="hero-image">
+            </div>
+            <br><br>
+            <div class="brand-area">
+                <h1>Studio Jani Brandi</h1>
+                <h2>Nail Designer</h2>
+            </div>
+        </header>
 
-    <main class="catalogo-section">
-        <h2 class="section-title">Catálogo de Serviços</h2>
+        <main class="catalogo-section">
+            <h2 class="section-title">Catálogo de Serviços</h2>
 
-        <div class="services-grid">
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Manicure Tradicional</h3>
+                        <p class="service-desc">Cutilagem funda e esmaltação
+                            perfeita.</p>
+                        <div class="service-price">R$ 40,00</div>
+                    </div>
+                    <button class="btn-agendar"
+                        onclick="agendar('Manicure Tradicional', '40,00')">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Alongamento em Fibra</h3>
+                        <p class="service-desc">Resistência e naturalidade para
+                            suas unhas.</p>
+                        <div class="service-price">R$ 150,00</div>
+                    </div>
+                    <button class="btn-agendar"
+                        onclick="agendar('Alongamento em Fibra', '150,00')">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Banho de Gel</h3>
+                        <p class="service-desc">Proteção para unhas naturais sem
+                            alongar.</p>
+                        <div class="service-price">R$ 80,00</div>
+                    </div>
+                    <button class="btn-agendar"
+                        onclick="agendar('Banho de Gel', '80,00')">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-info">
+                        <h3>Spa dos Pés</h3>
+                        <p class="service-desc">Esfoliação, hidratação e
+                            massagem.</p>
+                        <div class="service-price">R$ 60,00</div>
+                    </div>
+                    <button class="btn-agendar"
+                        onclick="agendar('Spa dos Pés', '60,00')">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </button>
+                </div>
+
+            </div>
+        </main>
+
+        <section class="location-section">
+            <h2 class="section-title">Onde Estamos</h2>
             
-            <div class="service-card">
-                <div class="service-info">
-                    <h3>Manicure Tradicional</h3>
-                    <p class="service-desc">Cutilagem funda e esmaltação perfeita.</p>
-                    <div class="service-price">R$ 40,00</div>
-                </div>
-                <button class="btn-agendar" onclick="agendar('Manicure Tradicional', '40,00')">
-                    <i class="fab fa-whatsapp"></i> Agendar
-                </button>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197586021469!2d-46.65868662502127!3d-23.561348561592656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1704576000000!5m2!1spt-BR!2sbr" 
+                    width="100%" 
+                    height="350" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
 
-            <div class="service-card">
-                <div class="service-info">
-                    <h3>Alongamento em Fibra</h3>
-                    <p class="service-desc">Resistência e naturalidade para suas unhas.</p>
-                    <div class="service-price">R$ 150,00</div>
-                </div>
-                <button class="btn-agendar" onclick="agendar('Alongamento em Fibra', '150,00')">
-                    <i class="fab fa-whatsapp"></i> Agendar
-                </button>
-            </div>
+            <p class="address-text">
+                <i class="fas fa-map-marker-alt" style="color: var(--cor-dourado);"></i>
+                Av. Eng. Armando de Arruda Pereira, 4070 - Vila do Encontro
+            </p>
+        </section>
 
-            <div class="service-card">
-                <div class="service-info">
-                    <h3>Banho de Gel</h3>
-                    <p class="service-desc">Proteção para unhas naturais sem alongar.</p>
-                    <div class="service-price">R$ 80,00</div>
-                </div>
-                <button class="btn-agendar" onclick="agendar('Banho de Gel', '80,00')">
-                    <i class="fab fa-whatsapp"></i> Agendar
-                </button>
-            </div>
+        <footer>
+            <a href="https://www.instagram.com/janibrandi.studio/reels/" target="_blank"
+                class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <p class="footer-text">Siga nosso Instagram para novidades!</p>
+            <br>
+            <p class="footer-text" style="font-size: 0.7rem;">© 2026 Kleber Pereira</p>
+        </footer>
 
-            <div class="service-card">
-                <div class="service-info">
-                    <h3>Spa dos Pés</h3>
-                    <p class="service-desc">Esfoliação, hidratação e massagem.</p>
-                    <div class="service-price">R$ 60,00</div>
-                </div>
-                <button class="btn-agendar" onclick="agendar('Spa dos Pés', '60,00')">
-                    <i class="fab fa-whatsapp"></i> Agendar
-                </button>
-            </div>
-
-            </div>
-    </main>
-
-    <footer>
-        <a href="https://instagram.com/SEU_INSTAGRAM_AQUI" target="_blank" class="social-link">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <p class="footer-text">Siga nosso Instagram para novidades!</p>
-        <br>
-        <p class="footer-text" style="font-size: 0.7rem;">&copy; 2024 Studio Jani Brandi</p>
-    </footer>
-
-    <script>
-        // =========================================
-        // CONFIGURAÇÃO DO WHATSAPP
-        // =========================================
-        
-        // 1. Coloque o número do salão aqui (com código do país e DDD, apenas números)
-        const numeroWhatsApp = "5511999999999"; 
+        <script>
+        const numeroWhatsApp = "5511960128667"; 
 
         function agendar(servico, valor) {
-            // Cria a mensagem personalizada
             const mensagem = `Olá, gostaria de agendar o serviço: *${servico}* (Valor: R$ ${valor}). Poderia me informar os horários disponíveis?`;
-            
-            // Codifica a mensagem para URL
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-            
-            // Abre o WhatsApp em nova aba
             window.open(url, '_blank');
         }
+
+        ScrollReveal().reveal('.service-card', { delay: 200, distance: '50px', origin: 'bottom', interval: 100 });
+        ScrollReveal().reveal('.hero-image', { delay: 100, scale: 0.9 });
+        ScrollReveal().reveal('.location-section', { delay: 200, distance: '50px', origin: 'bottom' });
     </script>
 
-</body>
+    <a href="https://wa.me/5511960128667" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        </a>
+    </body>
 </html>
