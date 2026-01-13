@@ -207,7 +207,6 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* ALTERADO: REMOVIDO GRAYSCALE */
         .card-img {
             width: 100%; height: 100%; background-color: #f0f0f0; object-fit: cover;
             filter: none; /* Imagem colorida */
@@ -261,7 +260,7 @@
 
 
         /* ============================
-           MODAL
+           MODAL & OPTIONS
            ============================ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -304,11 +303,84 @@
         
         .modal-info h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 15px; color: var(--accent); }
         .modal-tags { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .modal-desc { color: #666; line-height: 1.7; margin-bottom: 30px; font-size: 0.95rem; }
+        .modal-desc { color: #666; line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; }
         .modal-links { display: flex; gap: 15px; }
 
+        /* ESTILO DAS OPÇÕES DE SERVIÇO */
+        .modal-options-container {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option-item {
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            color: var(--primary-text);
+            background: #fff;
+        }
 
-        /* SINGLE IMG (Geral) - ALTERADO: REMOVIDO GRAYSCALE */
+        .option-item:hover {
+            border-color: var(--brand-pink);
+            background: rgba(239, 170, 196, 0.1);
+        }
+
+        .option-item.selected {
+            background: var(--brand-pink);
+            color: #fff;
+            border-color: var(--brand-pink);
+            box-shadow: 0 4px 10px rgba(239, 170, 196, 0.3);
+            font-weight: 600;
+        }
+
+        /* ESTILO DOS ADICIONAIS (NOVO) */
+        .addons-section {
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+            display: none; /* Oculto por padrão, ativado via JS */
+        }
+        .addons-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .addons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .addon-item {
+            font-size: 0.8rem;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
+            background: #fff;
+            color: var(--primary-text);
+        }
+        .addon-item:hover { border-color: var(--brand-pink); }
+        .addon-item.active { 
+            background: var(--brand-pink); 
+            color: #fff; 
+            border-color: var(--brand-pink);
+            font-weight: 600;
+        }
+
+
+        /* SINGLE IMG (Geral) */
         .single-img {
             max-width: 100%; max-height: 450px; object-fit: contain;
             filter: none; /* Colorido */
@@ -348,7 +420,6 @@
             border: 4px solid #fff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        /* ALTERADO: REMOVIDO FILTRO DO MAPA */
         .map-wrapper iframe { width: 100%; height: 100%; border: 0; filter: none; }
 
 
@@ -471,7 +542,7 @@
             <div class="content-grid">
                 <div class="content">
                     <span class="tag">NAIL DESIGNER</span>
-                    <!-- <h1>STUDIO<br><span class="title-cursive">Jani Brandi</span></h1> -->
+                    <h1>STUDIO<br><span class="title-cursive">Jani Brandi</span></h1>
                     
                     <div class="btn-group">
                         <a href="#" onclick="openWhatsApp()" class="btn-slider"><i class="fab fa-whatsapp"></i> Agendar Agora</a>
@@ -607,6 +678,15 @@
                     <h2 id="m-title">Título do Serviço</h2>
                     <div id="m-tags" class="modal-tags"></div>
                     <p id="m-desc" class="modal-desc">Descrição completa...</p>
+                    
+                    <div id="m-options" class="modal-options-container"></div>
+
+                    <div id="m-addons-container" class="addons-section">
+                        <span class="addons-title">Deseja incluir algo a mais?</span>
+                        <div id="m-addons-grid" class="addons-grid">
+                            </div>
+                    </div>
+
                     <div class="modal-links">
                         <a id="m-btn-agenda" href="#" target="_blank" class="btn-slider">Agendar Este Serviço</a>
                     </div>
@@ -619,35 +699,97 @@
         // CONFIGURAÇÃO
         const numeroWhatsApp = "5511960128667";
 
-        // DADOS DOS SERVIÇOS
+        // DADOS DOS SERVIÇOS (COM OPÇÕES)
         const servicesData = [
             {
                 title: "Manicure Tradicional",
                 img: "img/home.jpeg", 
-                tags: ["Cutilagem", "Esmaltação", "R$ 40,00"],
+                tags: ["Cutilagem", "Esmaltação"],
                 desc: "Serviço completo de cutilagem funda e esmaltação perfeita. Utilizamos materiais esterilizados e descartáveis para sua total segurança.",
-                price: "40,00"
+                options: [
+                    { name: "Apenas Mão", price: "35,00" },
+                    { name: "Apenas Pé", price: "40,00" },
+                    { name: "Mão e Pé", price: "70,00" }
+                ]
             },
+
             {
-                title: "Alongamento em Fibra",
+                title: "Spa dos Pés",
                 img: "img/home.jpeg",
-                tags: ["Resistência", "Naturalidade", "R$ 150,00"],
-                desc: "A técnica queridinha do momento. A fibra de vidro proporciona um alongamento com aparência extremamente natural, fina e resistente. Ideal para quem rói unhas ou deseja comprimento imediato.",
-                price: "150,00"
+                tags: ["Relaxamento", "Hidratação"],
+                desc: "Um tratamento completo para seus pés. Inclui esfoliação profunda, hidratação intensa e massagem relaxante.",
+                options: [
+                    { name: "Spa Completo", price: "55,00" },
+                    { name: "Spa + Pedicure", price: "90,00" }
+                ]
+            },
+
+            {
+                title: "Blindagem",
+                img: "img/home.jpeg",
+                tags: ["Manicure", "Pedicure", "Unhas fortes"],
+                desc: "Preparação da unha natural + aplicação de gel base (Não alonga) Cutilagem inclusa",
+                options: [
+                    { name: "Aplicação", price: "130,00" },
+                    { name: "Esmaltação em gel", price: "110,00" },
+                    { name: "Esmaltação Tradicional", price: "90,00" }
+                ]
             },
             {
                 title: "Banho de Gel",
                 img: "img/home.jpeg",
-                tags: ["Proteção", "Brilho", "R$ 80,00"],
-                desc: "Uma camada de gel sobre suas unhas naturais (sem alongar). Evita quebras, lascas e mantém o esmalte por muito mais tempo com um brilho incrível.",
-                price: "80,00"
+                tags: ["Proteção", "Brilho"],
+                desc: "Uma camada de gel sobre suas unhas naturais (sem alongar). Evita quebras, lascas e mantém o esmalte por muito mais tempo.",
+                options: [
+                    { name: "Aplicação", price: "130,00" },
+                    { name: "Manutenção - Esmaltação em gel", price: "100,00" },
+                    { name: "Manutenção - Esmaltação Tradicional", price: "90,00" }
+                ]
             },
             {
-                title: "Spa dos Pés",
+                title: "Alongamento",
                 img: "img/home.jpeg",
-                tags: ["Relaxamento", "Hidratação", "R$ 60,00"],
-                desc: "Um tratamento completo para seus pés. Inclui esfoliação profunda, hidratação intensa e massagem relaxante. Seus pés macios e renovados.",
-                price: "60,00"
+                tags: ["Molde F1"],
+                desc: "Alongamentos resistentes e com aspecto natural. A solução para unhas bonitas e práticas.",
+                options: [
+                    { name: "Esmaltação em gel", price: "120,00" },
+                    { name: "Esmaltação Tradicional", price: "110,00" }
+                ]
+            },
+            {
+                title: "Sombrancelha",
+                img: "img/home.jpeg",
+                tags: ["Pinça"],
+                desc: "A arte do design que valoriza sua expressão.",
+                options: [
+                    { name: "Design Tradicional", price: "35,00" },
+                    { name: "Depilação - Buço", price: "20,00" }
+                ]
+            },
+            {
+                title: "Adicionais",
+                img: "img/home.jpeg",
+                tags: ["Detalhes", "Glamour"],
+                desc: "Um tratamento completo para seus pés. Inclui esfoliação profunda, hidratação intensa e massagem relaxante.",
+                options: [
+                    { name: "Adesivo", price: "2,00" },
+                    { name: "Strass", price: "5,00" },
+                    { name: "Francesinha Tradicional", price: "8,00" },
+                    { name: "Francesinha em Gel", price: "12,00" }
+                ]
+            },
+            {
+                title: "Nail Arts",
+                img: "img/home.jpeg",
+                tags: ["NailStyle", "NailDesign"],
+                desc: "Este design é perfeito para quem busca sofisticação e versatilidade, combinando com qualquer ocasião",
+                options: [
+                    { name: "Simples (por unha)", price: "2,00" },
+                    { name: "Pedraria", price: "5,00" },
+                    { name: "Aplicação unha avulsa", price: "16,00" },
+                    { name: "Encapsulada (par)", price: "20,00" },
+                    { name: "Remoção do gel", price: "50,00" }
+                ]
             }
         ];
 
@@ -664,6 +806,7 @@
         servicesData.forEach((service, index) => {
             const card = document.createElement('div');
             card.className = 'project-card';
+            
             card.innerHTML = `
                 <div class="card-image-container">
                     <img src="${service.img}" class="card-img" loading="lazy">
@@ -678,15 +821,28 @@
                     <p>${service.desc}</p>
                     <div class="card-links">
                         <button class="card-btn primary" onclick="openModal(${index})">Ver Detalhes</button>
-                        <button class="card-btn secondary" onclick="openWhatsApp('Olá, quero agendar: ${service.title}')">Agendar</button>
                     </div>
                 </div>
             `;
             servicesContainer.appendChild(card);
         });
 
+        // VARIÁVEIS GLOBAIS DE ESTADO
+        let currentSelectedOption = null;
+        let currentSelectedAddons = []; // Array para armazenar múltiplos adicionais
+
+        // EXTRAIR LISTA COMPLETA DE ADICIONAIS DISPONÍVEIS
+        const globalAddonsList = [
+            ...servicesData.find(s => s.title === "Adicionais").options,
+            ...servicesData.find(s => s.title === "Nail Arts").options
+        ];
+
         // LÓGICA DO MODAL
         const modal = document.getElementById('projectModal');
+        const modalOptionsContainer = document.getElementById('m-options');
+        const modalAddonsContainer = document.getElementById('m-addons-container');
+        const modalAddonsGrid = document.getElementById('m-addons-grid');
+        const btnAgenda = document.getElementById('m-btn-agenda');
         
         function openModal(index) {
             const service = servicesData[index];
@@ -694,11 +850,7 @@
             document.getElementById('m-desc').innerText = service.desc;
             document.getElementById('m-img').src = service.img;
             
-            // Configurar botão do modal
-            const btnAgenda = document.getElementById('m-btn-agenda');
-            btnAgenda.onclick = () => openWhatsApp(`Olá, vi no site e gostaria de agendar o serviço: ${service.title} (R$ ${service.price})`);
-            
-            // Gerar tags
+            // Limpa as tags anteriores e adiciona as novas
             const tagContainer = document.getElementById('m-tags');
             tagContainer.innerHTML = '';
             service.tags.forEach(tag => {
@@ -708,7 +860,75 @@
                 tagContainer.appendChild(span);
             });
 
+            // GERA AS OPÇÕES DE SERVIÇO (RÁDIO/ÚNICA ESCOLHA)
+            modalOptionsContainer.innerHTML = ''; 
+            currentSelectedOption = service.options[0]; // Seleciona a primeira por padrão
+            currentSelectedAddons = []; // Reseta adicionais
+
+            service.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('div');
+                optBtn.className = `option-item ${idx === 0 ? 'selected' : ''}`;
+                optBtn.innerHTML = `<span>${opt.name}</span> <span>R$ ${opt.price}</span>`;
+                
+                optBtn.onclick = () => {
+                    document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+                    optBtn.classList.add('selected');
+                    currentSelectedOption = opt;
+                    updateAgendaButton(service.title);
+                };
+                modalOptionsContainer.appendChild(optBtn);
+            });
+
+            // GERA A ÁREA DE ADICIONAIS (SE NÃO FOR SOMBRANCELHA)
+            if (service.title === "Sombrancelha") {
+                modalAddonsContainer.style.display = "none";
+            } else {
+                modalAddonsContainer.style.display = "block";
+                modalAddonsGrid.innerHTML = ''; // Limpa anteriores
+
+                globalAddonsList.forEach((addon) => {
+                    const addBtn = document.createElement('div');
+                    addBtn.className = 'addon-item';
+                    addBtn.innerHTML = `${addon.name} (+ R$ ${addon.price})`;
+                    
+                    addBtn.onclick = () => {
+                        // Toggle visual
+                        addBtn.classList.toggle('active');
+                        
+                        // Toggle lógica no array
+                        const exists = currentSelectedAddons.find(a => a.name === addon.name);
+                        if (exists) {
+                            currentSelectedAddons = currentSelectedAddons.filter(a => a.name !== addon.name);
+                        } else {
+                            currentSelectedAddons.push(addon);
+                        }
+                        updateAgendaButton(service.title);
+                    };
+                    modalAddonsGrid.appendChild(addBtn);
+                });
+            }
+
+            // Atualiza botão inicial
+            updateAgendaButton(service.title);
             modal.classList.add('active');
+        }
+
+        // Função auxiliar para atualizar o texto/link do botão do WhatsApp
+        function updateAgendaButton(serviceTitle) {
+            if(currentSelectedOption) {
+                let msg = `Olá, vi no site e gostaria de agendar:\n*${serviceTitle}* - Opção: *${currentSelectedOption.name}* (Valor: R$ ${currentSelectedOption.price})`;
+                
+                // Se tiver adicionais, inclui na mensagem
+                if (currentSelectedAddons.length > 0) {
+                    msg += `\n\nAdicionais:`;
+                    currentSelectedAddons.forEach(add => {
+                        msg += `\n+ ${add.name} (R$ ${add.price})`;
+                    });
+                }
+
+                btnAgenda.onclick = () => openWhatsApp(msg);
+                btnAgenda.innerHTML = `Agendar: ${currentSelectedOption.name}`;
+            }
         }
 
         function closeModal() {
@@ -719,7 +939,7 @@
             if (e.target === modal) closeModal();
         });
 
-        // --- LÓGICA DO SLIDER ---
+        // --- LÓGICA DO SLIDER (MANTIDA IGUAL) ---
         let items = document.querySelectorAll('.slider .item');
         let next = document.getElementById('next');
         let prev = document.getElementById('prev');
