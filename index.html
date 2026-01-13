@@ -911,7 +911,7 @@
             modal.classList.add('active');
         }
 
-        // --- FUNÇÃO AJUSTADA PARA SOMAR VALORES E ENVIAR AO WHATSAPP ---
+        // --- FUNÇÃO AJUSTADA PARA SOMAR VALORES E ENVIAR AO WHATSAPP (CORRIGIDA PARA MOBILE) ---
         function updateAgendaButton(serviceTitle) {
             if(currentSelectedOption) {
                 
@@ -940,8 +940,11 @@
                 
                 msg += `\n\n*Valor Total Estimado: R$ ${totalFormatted}*`;
 
-                // 5. Atualiza o botão
-                btnAgenda.onclick = () => openWhatsApp(msg);
+                // 5. Atualiza o botão - CORREÇÃO CRÍTICA PARA MOBILE
+                // Em vez de usar window.open no click (que é bloqueado), alteramos o href diretamente
+                const wppUrl = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(msg)}`;
+                btnAgenda.href = wppUrl;
+                btnAgenda.onclick = null; // Remove o evento JS antigo para permitir o funcionamento nativo do link
                 btnAgenda.innerHTML = `Agendar (Total: R$ ${totalFormatted})`; 
             }
         }
