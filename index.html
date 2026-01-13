@@ -542,8 +542,6 @@
             <div class="content-grid">
                 <div class="content">
                     <span class="tag">NAIL DESIGNER</span>
-                    <!-- <h1>STUDIO<br><span class="title-cursive">Jani Brandi</span></h1> -->
-                    
                     <div class="btn-group">
                         <a href="#" onclick="openWhatsApp()" class="btn-slider"><i class="fab fa-whatsapp"></i> Agendar Agora</a>
                         <a href="https://www.instagram.com/janibrandi.studio/" target="_blank" class="btn-slider"><i class="fab fa-instagram"></i> Instagram</a>
@@ -913,21 +911,38 @@
             modal.classList.add('active');
         }
 
-        // Função auxiliar para atualizar o texto/link do botão do WhatsApp
+        // --- FUNÇÃO AJUSTADA PARA SOMAR VALORES E ENVIAR AO WHATSAPP ---
         function updateAgendaButton(serviceTitle) {
             if(currentSelectedOption) {
-                let msg = `Olá, vi no site e gostaria de agendar:\n*${serviceTitle}* - Opção: *${currentSelectedOption.name}* (Valor: R$ ${currentSelectedOption.price})`;
                 
-                // Se tiver adicionais, inclui na mensagem
+                // 1. Calcula o preço base (troca vírgula por ponto para somar)
+                let totalPrice = parseFloat(currentSelectedOption.price.replace(',', '.'));
+                
+                let addonsText = "";
+                
+                // 2. Soma os adicionais se houver
                 if (currentSelectedAddons.length > 0) {
-                    msg += `\n\nAdicionais:`;
+                    addonsText += `\n\nAdicionais:`;
                     currentSelectedAddons.forEach(add => {
-                        msg += `\n+ ${add.name} (R$ ${add.price})`;
+                        totalPrice += parseFloat(add.price.replace(',', '.'));
+                        addonsText += `\n+ ${add.name} (R$ ${add.price})`;
                     });
                 }
 
+                // 3. Formata o total de volta para moeda brasileira (ex: "55,00")
+                const totalFormatted = totalPrice.toFixed(2).replace('.', ',');
+
+                // 4. Monta a mensagem final para o WhatsApp com o SOMATÓRIO
+                let msg = `Olá, vi no site e gostaria de agendar:\n*${serviceTitle}*`;
+                msg += `\nOpção: *${currentSelectedOption.name}* (R$ ${currentSelectedOption.price})`;
+                
+                msg += addonsText;
+                
+                msg += `\n\n*Valor Total Estimado: R$ ${totalFormatted}*`;
+
+                // 5. Atualiza o botão
                 btnAgenda.onclick = () => openWhatsApp(msg);
-                btnAgenda.innerHTML = `Agendar: ${currentSelectedOption.name}`;
+                btnAgenda.innerHTML = `Agendar (Total: R$ ${totalFormatted})`; 
             }
         }
 
