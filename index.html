@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Studio Jani Brandi | Nail Designer</title>
+    <title>Studio Jani Brandi</title>
 
     <meta name="description" content="Studio Jani Brandi - Especialista em Alongamento de Unhas, Fibra de Vidro e Banho de Gel.">
     
@@ -543,7 +543,7 @@
                 <div class="content">
                     <span class="tag">NAIL DESIGNER</span>
                     <div class="btn-group">
-                        <a href="#" onclick="openWhatsApp()" class="btn-slider"><i class="fab fa-whatsapp"></i> Agendar Agora</a>
+                        <a href="#" onclick="goToSlide(1)" class="btn-slider"><i class="fab fa-whatsapp"></i> Agendar Agora</a>
                         <a href="https://www.instagram.com/janibrandi.studio/" target="_blank" class="btn-slider"><i class="fab fa-instagram"></i> Instagram</a>
                     </div>
 
@@ -746,7 +746,7 @@
             },
             {
                 title: "Alongamento",
-                img: "img/home.jpeg",
+                img: "img/moldef1.jpeg",
                 tags: ["Molde F1"],
                 desc: "Alongamentos resistentes e com aspecto natural. A solução para unhas bonitas e práticas.",
                 options: [
@@ -755,7 +755,7 @@
                 ]
             },
             {
-                title: "Sombrancelha",
+                title: "Sobrancelha",
                 img: "img/home.jpeg",
                 tags: ["Pinça"],
                 desc: "A arte do design que valoriza sua expressão.",
@@ -778,7 +778,7 @@
             },
             {
                 title: "Nail Arts",
-                img: "img/home.jpeg",
+                img: "img/nailart.jpeg",
                 tags: ["NailStyle", "NailDesign"],
                 desc: "Este design é perfeito para quem busca sofisticação e versatilidade, combinando com qualquer ocasião",
                 options: [
@@ -911,7 +911,7 @@
             modal.classList.add('active');
         }
 
-        // --- FUNÇÃO AJUSTADA PARA SOMAR VALORES E ENVIAR AO WHATSAPP (CORRIGIDA PARA MOBILE) ---
+        // --- FUNÇÃO AJUSTADA PARA SOMAR VALORES E ENVIAR AO WHATSAPP ---
         function updateAgendaButton(serviceTitle) {
             if(currentSelectedOption) {
                 
@@ -940,11 +940,8 @@
                 
                 msg += `\n\n*Valor Total Estimado: R$ ${totalFormatted}*`;
 
-                // 5. Atualiza o botão - CORREÇÃO CRÍTICA PARA MOBILE
-                // Em vez de usar window.open no click (que é bloqueado), alteramos o href diretamente
-                const wppUrl = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(msg)}`;
-                btnAgenda.href = wppUrl;
-                btnAgenda.onclick = null; // Remove o evento JS antigo para permitir o funcionamento nativo do link
+                // 5. Atualiza o botão
+                btnAgenda.onclick = () => openWhatsApp(msg);
                 btnAgenda.innerHTML = `Agendar (Total: R$ ${totalFormatted})`; 
             }
         }
